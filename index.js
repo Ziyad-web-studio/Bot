@@ -17,6 +17,13 @@ try {
   console.log("Memory file not found, using default.");
 }
 
+// ===== SMART TIME FILTER (WIB 07:00 - 22:00) =====
+function isActiveHour() {
+  const now = new Date();
+  const hourWIB = (now.getUTCHours() + 7) % 24;
+  return hourWIB >= 7 && hourWIB <= 22;
+}
+
 // ===== GENERATE MESSAGE =====
 async function generateMessage() {
   const response = await fetch(
@@ -84,15 +91,17 @@ async function sendToTelegram(text) {
 // ===== MAIN EXECUTION =====
 (async () => {
   try {
+    if (!isActiveHour()) {
+      console.log("Outside active hours (WIB). Skipping message.");
+      return;
+    }
+
     const message = await generateMessage();
     console.log("Generated message:", message);
 
-    // random delay 5-20 detik biar terasa manusiawi
-    const delay = Math.floor(Math.random() * 15000) + 5000;
-    await new Promise((res) => setTimeout(res, delay));
-
     await sendToTelegram(message);
     console.log("Message sent successfully.");
+
   } catch (err) {
     console.error("Bot failed:", err);
     process.exit(1);
