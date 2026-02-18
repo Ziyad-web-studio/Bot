@@ -1,4 +1,4 @@
-name: AI Girlfriend Bot
+name: AI Telegram Bot
 
 on:
   schedule:
