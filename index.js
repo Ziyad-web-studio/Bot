@@ -5,7 +5,7 @@ const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
-const memory = JSON.parse(fs.readFileSync("./bot/memory.json", "utf-8"));
+const memory = JSON.parse(fs.readFileSync("./memory.json", "utf-8"));
 
 async function generateMessage() {
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
