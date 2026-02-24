@@ -6,8 +6,7 @@ const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
-// ===== LOAD MEMORY SAFE =====
-let memory = { name: "Ziyad", last_mood: "normal", last_topic: "" };
+// ===== LOlast_mood: "normal", last_topic: "" };
 
 try {
   const data = fs.readFileSync("./memory.json", "utf-8");
